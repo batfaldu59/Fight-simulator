@@ -64,6 +64,35 @@ class Guerrier extends Personnage {
     }
 }
 
+let btn = document.querySelector("button");
+let cmt1 = document.querySelector("#combatant1");
+let cmt2 = document.querySelector("#combatant2")
+let error = document.querySelector("#error")
+let image = document.querySelector("img")
+cmt1.addEventListener("keyup", function () {
+    if (!isNaN(cmt1.value) && cmt1.value !== "") {
+        error.style.display = "block";
+    } else {
+        error.style.display = "none";
+    }
+})
+cmt2.addEventListener("keyup", function () {
+    if (!isNaN(cmt1.value) && cmt1.value !== "") {
+        error.style.display = "block";
+    } else {
+        error.style.display = "none";
+    }
+})
+btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (cmt1.value === "" || cmt2.value === "") {
+        error.textContent = "Vous devez renseigner les noms des deux combattant pour qu'il se battent"
+        error.style.display = "block";
+    } else {
+        image.style.display = "block";
+    }
+})
+
 var gandalf = new Magicien('Gandalf');
 var thor    = new Guerrier('Thor');
 console.log(thor.informations);

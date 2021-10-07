@@ -6,13 +6,26 @@
     <meta name="viewport" content="width=Fight Simulator, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Fight Simulator</title>
-    <div class="container">
-        <div id="combatant1">
-            
-        </div>
-    </div>
 </head>
 <body>
-    
+    <div class="container" style="display: flex; justify-content: space-between; margin-top: 250px;">
+        <div class="card" style="width: 18rem; background-color: #72B7E7;">
+            <div class="card-body">
+                <h5 class="card-title">Combattant 1</h5>
+                <input id="combatant1" type="text" placeholder="Combattant 1">
+            </div>
+        </div>
+        <div class="card" style="width: 18rem; background-color: #F46173;">
+            <div class="card-body">
+                <h5 class="card-title">Combattant 2</h5>
+                <input id="combatant2" type="text" placeholder="Combattant 2">
+            </div>
+        </div>
+    </div>
+    <p id="error" style="color: red;text-align: center;  display: none;">Veuillez ne pas renseigner de chiffre</p>
+    <button style="position: relative; left: 900px;" class=" btn btn-danger btn-lg" type="submit">FIGHT</button>
+    <br>
+    <img style="position: relative; left: 850px; display: none;" src="combat.gif" alt="Combat">
+    <script src="combat.js"></script>
 </body>
 </html>
