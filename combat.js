@@ -64,41 +64,54 @@ class Guerrier extends Personnage {
     }
 }
 
+
 let btn = document.querySelector("button");
-let cmt1 = document.querySelector("#combatant1");
-let cmt2 = document.querySelector("#combatant2")
 let error = document.querySelector("#error")
 let image = document.querySelector("img")
-cmt1.addEventListener("keyup", function () {
-    if (!isNaN(cmt1.value) && cmt1.value !== "") {
-        error.style.display = "block";
-    } else {
-        error.style.display = "none";
-    }
-})
-cmt2.addEventListener("keyup", function () {
-    if (!isNaN(cmt1.value) && cmt1.value !== "") {
-        error.style.display = "block";
-    } else {
-        error.style.display = "none";
-    }
-})
-btn.addEventListener("click", (e) => {
-    e.preventDefault();
-    if (cmt1.value === "" || cmt2.value === "") {
-        error.textContent = "Vous devez renseigner les noms des deux combattant pour qu'il se battent"
-        error.style.display = "block";
-    } else {
-        image.style.display = "block";
-    }
+let cmt = document.querySelectorAll(".combattant").forEach(element => {
+    element.addEventListener('keyup', () => {
+        if (!isNaN(element.value) && element.value !== '') {
+            error.style.display = "block";
+        } else {
+            error.style.display = "none";
+        }
+    })
 })
 
-var gandalf = new Magicien('Gandalf');
-var thor    = new Guerrier('Thor');
-console.log(thor.informations);
-console.log(gandalf.informations);
-gandalf.attaquer(thor);
-console.log(thor.informations);
-thor.attaquer(gandalf);
-console.log(gandalf.informations);
-gandalf.coupSpecial(thor);
+
+btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    let combattant = document.querySelectorAll(".combattant");
+    let combattant1;
+    let combattant2;
+    for (let i = 0 ; i < combattant.length ; i++) {
+        if (combattant[i].value === "") {
+            error.textContent = "Vous devez renseigner les noms des héros qui combattrons";
+            error.style.display = "block";
+        } else {
+            error.style.display = "none";
+            combattant[i].setAttribute("disabled", true);
+            image.style.display = "block";
+            
+        }
+        
+        if (i === 0) {
+            combattant1 = new Magicien(combattant[0].value);
+        } else {
+            combattant2 = new Guerrier(combattant[1].value)
+        }
+    }
+    
+    
+    
+    
+})
+
+
+// console.log(thor.informations);
+// console.log(gandalf.informations);
+// gandalf.attaquer(thor);
+// console.log(thor.informations);
+// thor.attaquer(gandalf);
+// console.log(gandalf.informations);
+// gandalf.coupSpecial(thor);
