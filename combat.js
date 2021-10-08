@@ -94,7 +94,6 @@ btn.addEventListener("click", (e) => {
             error.style.display = "block";
         } else {
             error.style.display = "none";
-            combattant[i].setAttribute("disabled", true);
             image.style.display = "block";
             
         }
@@ -106,23 +105,15 @@ btn.addEventListener("click", (e) => {
         }
     }
     var result = () => {
+        image.style.display = "block";
         let div = document.querySelector("#resultat");
         div.innerHTML = "<p>"+combattant1.informations+"<br>"+combattant2.informations+"<br>"+combattant1.attaquer(combattant2)+
                         "<br>"+combattant2.informations+"<br>"+combattant2.attaquer(combattant1)+
                         "<br>"+combattant1.informations+"<br>"+combattant1.coupSpecial(combattant2)+"</p>";
+        div.style.fontSize = "20px";
+        div.style.textAlign = "center";
+        image.style.display = "none";
     } 
     setTimeout(result, 3000);
     
-    
-    
-    
 })
-
-
-// console.log(thor.informations);
-// console.log(gandalf.informations);
-// gandalf.attaquer(thor);
-// console.log(thor.informations);
-// thor.attaquer(gandalf);
-// console.log(gandalf.informations);
-// gandalf.coupSpecial(thor);
