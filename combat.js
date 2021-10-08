@@ -9,13 +9,13 @@ class Personnage {
 
     evoluer() {
         this.niveau++;
-        console.log("["+this.pseudo+"] passe au niveau "+this.niveau);
+        return "["+this.pseudo+"] passe au niveau "+this.niveau;
     }
 
     verifierSante() {
         if (this.sante <= 0) {
             this.sante = 0;
-            console.log("["+this.pseudo+"] à perdu !");
+            return "["+this.pseudo+"] à perdu !";
         }
     }
 
@@ -31,16 +31,18 @@ class Magicien extends Personnage {
 
     attaquer(personnage) {
         personnage.sante += this.attaque;
-        console.log("["+this.pseudo+"] attaque ["+personnage.pseudo+"] en lancant un sort (["+this.attaque+"] dégats)");
+        let resultat = "["+this.pseudo+"] attaque ["+personnage.pseudo+"] en lancant un sort (["+this.attaque+"] dégats)";
         this.evoluer();
         personnage.verifierSante();
+        return resultat;
     }
 
     coupSpecial(personnage) {
         personnage.sante += this.attaque * 5;
-        console.log("["+this.pseudo+"] attaque avec son coup special puissance des arcades ["+personnage.pseudo+"] (["+this.attaque*5+"] dégats)");
+        let resultat = "["+this.pseudo+"] attaque avec son coup special puissance des arcades ["+personnage.pseudo+"] (["+this.attaque*5+"] dégats)";
         this.evoluer();
         personnage.verifierSante();
+        return resultat;
     }
 }
 
@@ -51,16 +53,18 @@ class Guerrier extends Personnage {
 
     attaquer(personnage) {
         personnage.sante += this.attaque;
-        console.log("["+this.pseudo+"] attaque ["+personnage.pseudo+"] avec son épée (["+this.attaque+"] dégats)");
+        let resultat = "["+this.pseudo+"] attaque ["+personnage.pseudo+"] avec son épée (["+this.attaque+"] dégats)";
         this.evoluer();
         personnage.verifierSante();
+        return resultat;
     }
 
     coupSpecial(personnage) {
         personnage.sante += this.attaque * 5;
-        console.log("["+this.pseudo+"] attaque avec son coup special hache de guerre ["+personnage.pseudo+"] (["+this.attaque*5+"] dégats)");
+        let resultat = "["+this.pseudo+"] attaque avec son coup special hache de guerre ["+personnage.pseudo+"] (["+this.attaque*5+"] dégats)";
         Personnage.evoluer();
         personnage.verifierSante();
+        return resultat;
     }
 }
 
@@ -101,6 +105,13 @@ btn.addEventListener("click", (e) => {
             combattant2 = new Guerrier(combattant[1].value)
         }
     }
+    var result = () => {
+        let div = document.querySelector("#resultat");
+        div.innerHTML = "<p>"+combattant1.informations+"<br>"+combattant2.informations+"<br>"+combattant1.attaquer(combattant2)+
+                        "<br>"+combattant2.informations+"<br>"+combattant2.attaquer(combattant1)+
+                        "<br>"+combattant1.informations+"<br>"+combattant1.coupSpecial(combattant2)+"</p>";
+    } 
+    setTimeout(result, 3000);
     
     
     
